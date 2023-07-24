@@ -1,6 +1,6 @@
 import { Text, View, FlatList, Pressable, StyleSheet } from 'react-native';
 import React, { Component, useState, useEffect, useCallback } from 'react';
-import { MoodOptionType } from '../types/MoodOptionType';
+import { MoodOptionType } from '../types';
 import { theme } from '../theme.ts';
 
 const moodOptions: MoodOptionType[] = [
@@ -21,10 +21,9 @@ export const MoodPicker: React.FC = () => {
       <Text style={styles.heading}>How are you right now?</Text>
       <View style={styles.moodList}>
         {moodOptions.map(option => (
-          <View>
+          <View key={option.description}>
             <Pressable
               onPress={() => setSelectedMood(option)}
-              key={option.description}
               style={[
                 styles.moodItem,
                 option.emoji === selectedMood?.emoji
